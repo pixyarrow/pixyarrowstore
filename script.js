@@ -46,6 +46,15 @@ function renderStore() {
 function openModal(name) {
     document.getElementById('modal-item-name').innerText = name;
     document.getElementById('checkout-modal').style.display = 'flex';
+    
+    // CLICK TRACKER: Send a log when someone opens an item
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            content: `👀 Someone is looking at: **${name}**`
+        })
+    });
 }
 
 function closeModal() {
@@ -99,13 +108,12 @@ async function confirmPurchase() {
     const header = document.getElementById('status-header');
     const text = document.getElementById('status-text');
 
-    // Default states (Fail first)
     let verificationStatus = "⚠️ INVALID/UNVERIFIED";
     let statusColor = 15158332; 
     icon.innerText = "❌";
     header.innerText = "Verification Failed";
     header.style.color = "#e74c3c";
-    text.innerText = "The TXID provided does not appear to be valid for this wallet.";
+    text.innerText = "The TXID provided does not match our wallet records.";
 
     try {
         if (method === 'LTC') {
@@ -117,7 +125,7 @@ async function confirmPurchase() {
                     icon.innerText = "✅";
                     header.innerText = "Payment Confirmed!";
                     header.style.color = "#2ecc71";
-                    text.innerText = "LTC payment verified! We are processing your order.";
+                    text.innerText = "LTC payment verified! Processing your order.";
                     verificationStatus = "✅ LTC VERIFIED";
                     statusColor = 3066993;
                 } else {
@@ -130,25 +138,23 @@ async function confirmPurchase() {
                 }
             }
         } else {
-            // STRICT USDT FORMAT CHECK (Check length/format to prevent spam)
             const isTrx = method === 'USDT_TRX' && tx.length >= 64;
             const isEvm = (method === 'USDT_ETH' || method === 'USDT_BNB') && tx.startsWith('0x');
 
             if (isTrx || isEvm) {
                 icon.innerText = "⏳";
-                header.innerText = "Manual Review Required";
+                header.innerText = "Manual Review";
                 header.style.color = "var(--gold)";
-                text.innerText = "USDT details logged. An admin will verify the hash manually within minutes.";
+                text.innerText = "USDT details logged. Admin will verify the hash manually.";
                 verificationStatus = `⏳ MANUAL REVIEW: ${method}`;
                 statusColor = 16763904;
             }
         }
     } catch (e) {
-        console.error("Verification Error:", e);
+        console.error("Error:", e);
         verificationStatus = "🚨 SYSTEM ERROR - CHECK MANUALLY";
     }
 
-    // FINAL UI SYNC & DISCORD SEND
     await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -175,5 +181,27 @@ async function confirmPurchase() {
     btn.innerText = "CONFIRM PURCHASE";
     btn.disabled = false;
 }
+
+/* --- VISITOR TRACKER --- */
+window.addEventListener('load', () => {
+    if (!sessionStorage.getItem('visit_logged')) {
+        fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                embeds: [{
+                    title: "🌐 New Visitor",
+                    description: "Someone just opened the store.",
+                    color: 3447003,
+                    fields: [
+                        { name: "Device", value: window.innerWidth < 768 ? "Mobile" : "Desktop", inline: true }
+                    ],
+                    timestamp: new Date()
+                }]
+            })
+        });
+        sessionStorage.setItem('visit_logged', 'true');
+    }
+});
 
 renderStore();
