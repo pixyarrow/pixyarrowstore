@@ -1,4 +1,4 @@
-/* --- ARROW & PIXY: IRONCLAD VERIFICATION ENGINE --- */
+/* --- ARROW & PIXY: IRONCLAD VERIFICATION ENGINE v2.0 --- */
 
 const PRODUCTS = [
     { name: "Perm Kitsune", price: "$24.00", type: "fruit", img: "https://preview.redd.it/perm-kitsune-giveaway-v0-foaxzfogemsf1.jpeg?auto=webp&s=94a2a2c0048bf4711a9f21178cedfca3b8edcd93" },
@@ -99,8 +99,13 @@ async function confirmPurchase() {
     const header = document.getElementById('status-header');
     const text = document.getElementById('status-text');
 
-    let verificationStatus = "❌ PENDING REVIEW";
-    let statusColor = 15158332;
+    // Default states (Fail first)
+    let verificationStatus = "⚠️ INVALID/UNVERIFIED";
+    let statusColor = 15158332; 
+    icon.innerText = "❌";
+    header.innerText = "Verification Failed";
+    header.style.color = "#e74c3c";
+    text.innerText = "The TXID provided does not appear to be valid for this wallet.";
 
     try {
         if (method === 'LTC') {
@@ -112,33 +117,38 @@ async function confirmPurchase() {
                     icon.innerText = "✅";
                     header.innerText = "Payment Confirmed!";
                     header.style.color = "#2ecc71";
-                    text.innerText = "LTC payment verified. Processing your order now!";
+                    text.innerText = "LTC payment verified! We are processing your order.";
                     verificationStatus = "✅ LTC VERIFIED";
                     statusColor = 3066993;
                 } else {
                     icon.innerText = "⏳";
                     header.innerText = "Confirming...";
-                    text.innerText = "Transaction found! Waiting for 1 network confirmation.";
+                    header.style.color = "var(--gold)";
+                    text.innerText = "Transaction found! Waiting for network confirmations.";
                     verificationStatus = "⏳ LTC PENDING (0 CONF)";
                     statusColor = 16763904;
                 }
             }
         } else {
-            // Manual check for USDT
-            icon.innerText = "⏳";
-            header.innerText = "Verifying USDT...";
-            text.innerText = "Our system is checking the blockchain for your USDT deposit. This takes 1-3 minutes.";
-            verificationStatus = `⏳ MANUAL CHECK: ${method}`;
-            statusColor = 16763904;
+            // STRICT USDT FORMAT CHECK (Check length/format to prevent spam)
+            const isTrx = method === 'USDT_TRX' && tx.length >= 64;
+            const isEvm = (method === 'USDT_ETH' || method === 'USDT_BNB') && tx.startsWith('0x');
+
+            if (isTrx || isEvm) {
+                icon.innerText = "⏳";
+                header.innerText = "Manual Review Required";
+                header.style.color = "var(--gold)";
+                text.innerText = "USDT details logged. An admin will verify the hash manually within minutes.";
+                verificationStatus = `⏳ MANUAL REVIEW: ${method}`;
+                statusColor = 16763904;
+            }
         }
     } catch (e) {
-        console.error(e);
-        icon.innerText = "⏳";
-        header.innerText = "Manual Verification Required";
-        text.innerText = "We couldn't auto-verify, but we've logged your TXID. Admin will check it manually.";
+        console.error("Verification Error:", e);
+        verificationStatus = "🚨 SYSTEM ERROR - CHECK MANUALLY";
     }
 
-    // Send to Discord
+    // FINAL UI SYNC & DISCORD SEND
     await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -149,11 +159,12 @@ async function confirmPurchase() {
                 fields: [
                     { name: "🛍️ Item", value: itemName, inline: true },
                     { name: "👤 Roblox", value: robloxUser, inline: true },
-                    { name: "📱 Contact", value: contact, inline: true },
                     { name: "💰 Method", value: method, inline: true },
                     { name: "🔗 TXID", value: `\`${tx}\`` },
+                    { name: "📱 Contact", value: contact },
                     { name: "💬 Comments", value: comments }
                 ],
+                footer: { text: "Arrow & Pixy Ironclad Engine" },
                 timestamp: new Date()
             }]
         })
