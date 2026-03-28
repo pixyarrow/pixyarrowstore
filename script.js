@@ -67,7 +67,7 @@ const PRODUCTS = [
     },
 
     // --- MURDER MYSTERY 2 ---
-    { name: "Corrupt", price: "$12.00", category: "mm2", type: "weapon", img: "https://static.wikia.nocookie.net/murder-mystery-2/images/4/49/Corrupt_Transparent.png/revision/latest/thumbnail/width/360/height/450?cb=20200227150354" },
+    { name: "Corrupt", price: "$12.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/sD936Kmg/Corrupt-Transparent.webp" },
     { name: "Harvester", price: "$8.50", category: "mm2", type: "weapon", img: "https://static.wikia.nocookie.net/murder-mystery-2/images/b/b5/HarvesterImproved.png/revision/latest?cb=20231013001129" },
     { name: "Icepiercer", price: "$7.00", category: "mm2", type: "weapon", img: "https://static.wikia.nocookie.net/murder-mystery-2/images/8/89/Icepiercer.png/revision/latest?cb=20231227081854" },
     { name: "Turkey", price: "$32.00", category: "mm2", type: "weapon", img: "https://static.wikia.nocookie.net/murder-mystery-2/images/2/27/Turkey_2023.png/revision/latest?cb=20231127080215" },
