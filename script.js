@@ -104,6 +104,7 @@ const WALLETS = {
 
 const WEBHOOK_URL = "https://discord.com/api/webhooks/1487133287880331406/o1EAfZifztySMNI8zNH5pqNsrNDbdmj6H4_mt2PnWOMbjhRN0t1DcHLL7P258jltw3WX";
 
+
 // HUB NAVIGATION
 function openStore(game) {
     document.getElementById('hub-view').classList.add('hidden');
@@ -121,6 +122,15 @@ function openStore(game) {
 
     title.innerHTML = `${titles[game][0]} <span class="highlight">Store</span>`;
     subtitle.innerText = titles[game][1];
+
+    // --- ADDED WEBHOOK NOTIFICATION FOR VISITS ---
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            content: `🚪 **User Entered Store:** ${titles[game][0]}` 
+        })
+    });
 
     renderItems(game);
 }
