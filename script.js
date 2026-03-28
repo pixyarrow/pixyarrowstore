@@ -175,8 +175,17 @@ function preparePurchase(btn, baseName) {
 }
 
 function openModal(name, price) {
+    // RESET LOGIC: Always show Step 1 and hide others when opening
+    document.getElementById('step-1').classList.remove('hidden');
+    document.getElementById('step-2').classList.add('hidden');
+    document.getElementById('step-success').classList.add('hidden');
+    
+    // Clear the old hash input so they don't submit the wrong one twice
+    document.getElementById('tx-hash').value = "";
+
     document.getElementById('modal-item-name').innerText = name + " - " + price;
     document.getElementById('checkout-modal').style.display = 'flex';
+    
     fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -184,7 +193,16 @@ function openModal(name, price) {
     });
 }
 
-function closeModal() { document.getElementById('checkout-modal').style.display = 'none'; }
+function closeModal() { 
+    document.getElementById('checkout-modal').style.display = 'none'; 
+    
+    // Optional: Reset the button text in case it was stuck on "VERIFYING..."
+    const btn = document.querySelector('button[onclick="confirmPurchase()"]');
+    if(btn) {
+        btn.innerText = "CONFIRM PURCHASE";
+        btn.disabled = false;
+    }
+}
 function goToStep2() { 
     if(!document.getElementById('roblox-user').value || !document.getElementById('contact-method').value) return alert("Fill details!");
     document.getElementById('step-1').classList.add('hidden'); document.getElementById('step-2').classList.remove('hidden'); 
