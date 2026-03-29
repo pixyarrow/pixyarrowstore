@@ -138,6 +138,24 @@ function openStore(game) {
         return;
     }
 
+    // --- NEW: DISCORD ACTIVITY PING ---
+    const activityWebhook = "https://discord.com/api/webhooks/1487133287880331406/o1EAfZifztySMNI8zNH5pqNsrNDbdmj6H4_mt2PnWOMbjhRN0t1DcHLL7P258jltw3WX"; 
+    
+    fetch(activityWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            embeds: [{
+                title: "👀 Store Browsing Activity",
+                description: `A potential customer is now viewing the **${game.toUpperCase()}** store.`,
+                color: 0xffcc00, // Gold
+                timestamp: new Date(),
+                footer: { text: "Arrow & Pixy Hub Activity" }
+            }]
+        })
+    }).catch(err => console.log("Webhook failed (Normal if adblocker is on):", err));
+    // ----------------------------------
+
     // 1. FORCE THE SWITCH
     hubView.style.display = 'none'; // Hide Hub
     mainStore.style.display = 'block'; // Show Store
