@@ -580,3 +580,15 @@ input:focus { border-color: var(--gold); outline: none; }
         width: 100% !important;
     }
 }
+
+/* --- STORE BANNER SPACING --- */
+.store-banner {
+    margin-top: 60px !important; /* Space between the items and the banner */
+    margin-bottom: 60px !important;
+}
+
+#main-store {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
