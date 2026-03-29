@@ -1,5 +1,6 @@
 /* --- ARROW & PIXY: MULTI-GAME PREMIUM HUB v2.5 --- */
 
+
 const PRODUCTS = [
     // --- BLOX FRUITS: PERMANENT FRUITS ---
     { name: "Perm Kitsune", price: "$24.00", category: "bloxfruits", type: "fruit", img: "https://preview.redd.it/perm-kitsune-giveaway-v0-foaxzfogemsf1.jpeg?auto=webp&s=94a2a2c0048bf4711a9f21178cedfca3b8edcd93" },
@@ -67,16 +68,16 @@ const PRODUCTS = [
     },
 
     // --- MURDER MYSTERY 2 ---
-    { name: "Corrupt", price: "$12.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/sD936Kmg/Corrupt-Transparent.webp" },
-    { name: "Harvester", price: "$8.50", category: "mm2", type: "weapon", img: "https://i.postimg.cc/NFdpF3Yg/Harvester-Improved.webp" },
-    { name: "Icepiercer", price: "$7.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/RF9kHzr0/no-Filter.webp" },
-    { name: "Turkey", price: "$32.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/Jn1NXppt/Turkey-2023.webp" },
-    { name: "Dark Set", price: "$40.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/xdPH9K9r/Darkset.webp" },
-    { name: "Travelers Set", price: "$150.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/hj5XGsw2/Traveler-Set.webp" },
-    { name: "Sakura Set", price: "$40.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/RC2TsLFb/Sakura-Set.webp" },
-    { name: "Celestial Set", price: "$75.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/pd0fDD4T/5b63b5431082f50e49cac9b22dfbe962.webp" },
-    { name: "Vampire Set", price: "$50.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/8PhLy8xv/Vampires-Set.webp" },
-    { name: "Ever Set", price: "$95.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/LXcZTvT6/bd77924ec927a2f62235f8bfa672d9e6Evergreen-Set.png" },
+    { name: "Corrupt", price: "$11.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/sD936Kmg/Corrupt-Transparent.webp" },
+    { name: "Harvester", price: "$7.50", category: "mm2", type: "weapon", img: "https://i.postimg.cc/NFdpF3Yg/Harvester-Improved.webp" },
+    { name: "Icepiercer", price: "$6.50", category: "mm2", type: "weapon", img: "https://i.postimg.cc/RF9kHzr0/no-Filter.webp" },
+    { name: "Turkey", price: "$30.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/Jn1NXppt/Turkey-2023.webp" },
+    { name: "Dark Set", price: "$35.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/xdPH9K9r/Darkset.webp" },
+    { name: "Travelers Set", price: "$145.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/hj5XGsw2/Traveler-Set.webp" },
+    { name: "Sakura Set", price: "$35.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/RC2TsLFb/Sakura-Set.webp" },
+    { name: "Celestial Set", price: "$68.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/pd0fDD4T/5b63b5431082f50e49cac9b22dfbe962.webp" },
+    { name: "Vampire Set", price: "$45.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/8PhLy8xv/Vampires-Set.webp" },
+    { name: "Ever Set", price: "$88.00", category: "mm2", type: "weapon", img: "https://i.postimg.cc/LXcZTvT6/bd77924ec927a2f62235f8bfa672d9e6Evergreen-Set.png" },
     { name: "1000 Value", price: "$15.00", category: "mm2", type: "weapon", img: "https://production-gameflipusercontent.fingershock.com/us-east-1:9caa5859-f660-4c80-9667-6322748fcb06/fd346457-ec01-43a1-9678-cd6ee8f7aee1/76213771-e0fe-4fd6-b822-865ea2cbe7c2/640x640.webp" },
 
     // --- RIVALS (ADD YOUR NEW STUFF BELOW) ---
@@ -93,7 +94,24 @@ const PRODUCTS = [
     { name: "Standard Weapons Bundle", price: "$6.00", category: "rivals", type: "skin", img: "https://i.postimg.cc/VkJmf1wZ/Standard-Weapons-Bundel.webp" },
     { name: "Contraband Bundle", price: "$6.00", category: "rivals", type: "skin", img: "https://pic.mmowts.com/web/image/roblox/b69669d2a775ceb7ff562546c0d00efe.png?width=300" },
     // Example: { name: "New Skin", price: "$5.00", category: "rivals", type: "skin", img: "URL_HERE" }
-];
+
+    // --- BLADE BALL ---
+    { name: "1000 RAP (Different Weapons & Abilities according to 1000 token value)", price: "$4.50", category: "bladeball", type: "ability", img: "https://cdn-offer-photos.zeusx.com/88f5360c-c5b1-4a95-805e-dd3658d00dec.jpg" },
+    { name: "1000 Tokens", price: "$5.00", category: "bladeball", type: "ability", img: "https://kboosting.com/img/32336/c/blade-ball-tokens-500x500.png" },
+
+    // --- JAILBREAK ---
+    { name: "Torpedo (OG)", price: "$37.00", category: "jailbreak", type: "car", img: "https://jbvalues.com/images/items/vehicle/torpedo.webp" },
+    { name: "Javelin", price: "$42.00", category: "jailbreak", type: "car", img: "https://jbvalues.com/images/items/vehicle/javelin.webp" },
+    { name: "ICEBreaker", price: "$16.00", category: "jailbreak", type: "car", img: "https://jbvalues.com/images/items/vehicle/icebreaker.webp" },
+    { name: "Beignet", price: "$32.00", category: "jailbreak", type: "car", img: "https://jbvalues.com/images/items/vehicle/beignet.webp" },
+    { name: "Beam Hybrid", price: "$16.00", category: "jailbreak", type: "car", img: "https://jbvalues.com/images/items/vehicle/beamhybrid.webp" },
+    { name: "Beam Hybrid", price: "$16.00", category: "jailbreak", type: "car", img: "https://jbvalues.com/images/items/vehicle/beamhybrid.webp" },
+    { name: "Proto-8", price: "$24.00", category: "jailbreak", type: "car", img: "https://jbvalues.com/images/items/vehicle/proto-8.webp" },
+    { name: "Hypershift", price: "$261.00", category: "jailbreak", type: "item", img: "https://jbvalues.com/images/items/color/hypershift.webp" },
+    { name: "Void", price: "$38.00", category: "jailbreak", type: "item", img: "https://jbvalues.com/images/items/rim/void.webp" },
+    { name: "Checker", price: "$32.00", category: "jailbreak", type: "item", img: "https://jbvalues.com/images/items/texture/checker.webp" },
+    { name: "Hypercolors Lvl.5", price: "$32.00-50.00", category: "jailbreak", type: "item", img: "https://jbvalues.com/images/items/color/hyperbluelvl5.webp" }
+]; // End of PRODUCTS array
 
 const WALLETS = {
     LTC: "LUTPGLQ8B84n5D9gWhjCyDQx6Leb8o91tC",
@@ -105,82 +123,149 @@ const WALLETS = {
 const WEBHOOK_URL = "https://discord.com/api/webhooks/1487133287880331406/o1EAfZifztySMNI8zNH5pqNsrNDbdmj6H4_mt2PnWOMbjhRN0t1DcHLL7P258jltw3WX";
 
 
-// HUB NAVIGATION
+// --- HUB NAVIGATION ---
+// --- HUB NAVIGATION ---
+// --- HUB NAVIGATION (FORCE SHOW VERSION) ---
+// --- HUB NAVIGATION (FORCE VISIBILITY VERSION) ---
 function openStore(game) {
-    document.getElementById('hub-view').classList.add('hidden');
-    document.getElementById('main-store').classList.remove('hidden');
+    console.log("--- 🏁 openStore Started for:", game);
+    const hubView = document.getElementById('hub-view');
+    const mainStore = document.getElementById('main-store');
+    const storeTitle = document.getElementById('store-title');
+
+    if (!hubView || !mainStore) {
+        console.error("❌ Critical Error: hub-view or main-store not found in HTML");
+        return;
+    }
+
+    // 1. FORCE THE SWITCH
+    hubView.style.display = 'none'; // Hide Hub
+    mainStore.style.display = 'block'; // Show Store
+    mainStore.style.visibility = 'visible'; // Force visibility
+    mainStore.style.opacity = '1'; // Force opacity
+    mainStore.classList.remove('hidden'); 
     
-    const title = document.getElementById('store-title');
-    const subtitle = document.getElementById('store-subtitle');
-    
-    const titles = {
-        'bloxfruits': ["Blox Fruits", "PERMANENT FRUITS & PASSES"],
-        'adoptme': ["Adopt Me", "HIGH-TIER LEGENDARIES"],
-        'mm2': ["Murder Mystery 2", "GODLIES & ANCIENTS"],
-        'rivals': ["Rivals", "EXCLUSIVE WEAPON SKINS"]
-    };
+    window.scrollTo(0, 0); 
 
-    title.innerHTML = `${titles[game][0]} <span class="highlight">Store</span>`;
-    subtitle.innerText = titles[game][1];
+    // 2. UPDATE THE TITLE
+    if (storeTitle) {
+        storeTitle.innerHTML = `Arrow & Pixy <span class="highlight">${game.toUpperCase()}</span>`;
+    }
 
-    // --- ADDED WEBHOOK NOTIFICATION FOR VISITS ---
-    fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            content: `🚪 **User Entered Store:** ${titles[game][0]}` 
-        })
-    });
-
+    // 3. RUN RENDER
     renderItems(game);
 }
 
 function backToHub() {
-    document.getElementById('hub-view').classList.remove('hidden');
-    document.getElementById('main-store').classList.add('hidden');
+    const hubView = document.getElementById('hub-view');
+    const mainStore = document.getElementById('main-store');
+
+    // 1. Force the Hub to show
+    if (hubView) {
+        hubView.style.display = 'block';
+        hubView.classList.remove('hidden');
+    }
+
+    // 2. Force the Store to hide completely
+    if (mainStore) {
+        mainStore.style.display = 'none';
+        mainStore.classList.add('hidden');
+    }
+
+    // 3. Reset scroll to top of hub
+    window.scrollTo(0, 0);
 }
 
 function updatePrice(selectElement) {
-    const card = selectElement.closest('.item-card');
-    card.querySelector('.price').innerText = selectElement.value;
+    if (selectElement && selectElement.value) {
+        const card = selectElement.closest('.item-card');
+        const priceDisplay = card.querySelector('.price');
+        if (priceDisplay) {
+            priceDisplay.innerText = selectElement.value;
+        }
+    } 
 }
 
 function renderItems(game) {
+    console.log("--- 🛠️ renderItems Running for:", game);
     const container = document.getElementById('store-content');
-    container.innerHTML = '';
-    const filtered = PRODUCTS.filter(p => p.category === game);
-    const types = [...new Set(filtered.map(p => p.type))];
+    
+    if (!container) {
+        console.error("❌ ERROR: id='store-content' not found in your HTML!");
+        return;
+    }
+    
+    container.innerHTML = ''; 
+    
+    // Safety check: Is PRODUCTS even defined?
+    if (typeof PRODUCTS === 'undefined') {
+        console.error("❌ ERROR: The PRODUCTS array is missing or broken before this function!");
+        return;
+    }
+
+    const filtered = PRODUCTS.filter(p => p && p.category === game);
+    console.log(`📊 Found ${filtered.length} items for: ${game}`);
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<h2 style="color:var(--gold); text-align:center; padding:100px;">COMING SOON</h2>`;
+        console.log("⚠️ No items found, showing COMING SOON");
+        return;
+    }
+
+    // Get unique types (e.g., fruit, pet, car)
+    const types = [...new Set(filtered.map(p => p.type).filter(t => t))];
+    console.log("📂 Categories found within game:", types);
 
     types.forEach(type => {
         const section = document.createElement('section');
         section.className = 'game-section';
-        section.innerHTML = `<div class="section-title"><h2>${type.toUpperCase()}S</h2></div><div class="items-grid"></div>`;
+        section.innerHTML = `
+            <div class="section-title"><h2>${type.toUpperCase()}S</h2></div>
+            <div class="items-grid"></div>
+        `;
         const grid = section.querySelector('.items-grid');
 
         filtered.filter(p => p.type === type).forEach(p => {
-            let variantHtml = p.variants ? `
-                <select class="variant-select" onchange="updatePrice(this)" style="margin-bottom:10px; background:#111; border:1px solid #333; color:white; padding:8px; border-radius:8px; width:100%;">
-                    ${p.variants.map(v => `<option value="${v.price}">${v.label} - ${v.price}</option>`).join('')}
-                </select>` : '';
+            let variantHtml = "";
+            let displayPrice = p.price;
+
+            // Logic for Adopt Me (variants) vs Blox Fruits (fixed price)
+            if (p.variants && p.variants.length > 0) {
+                displayPrice = p.variants[0].price; 
+                variantHtml = `
+                    <select class="variant-select" onchange="updatePrice(this)" style="margin-bottom:10px; background:#111; border:1px solid #333; color:white; padding:8px; border-radius:8px; width:100%; cursor:pointer;">
+                        ${p.variants.map(v => `<option value="${v.price}">${v.label} - ${v.price}</option>`).join('')}
+                    </select>`;
+            }
             
+            const safeName = p.name ? p.name.replace(/'/g, "\\'") : "Unknown Item";
+
             grid.innerHTML += `
-                <div class="item-card">
-                    <img src="${p.img}">
-                    <h3>${p.name}</h3>
+                <div class="item-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                    <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'">
+                    <h3 style="margin-bottom:10px;">${p.name || "Unnamed Item"}</h3>
                     ${variantHtml}
-                    <p class="price">${p.price || p.variants[0].price}</p>
-                    <button onclick="preparePurchase(this, '${p.name}')">PURCHASE</button>
+                    <p class="price" style="margin-top:auto;">${displayPrice || "Contact"}</p>
+                    <button onclick="preparePurchase(this, '${safeName}')">PURCHASE</button>
                 </div>`;
         });
         container.appendChild(section);
     });
+    console.log("✅ Render Successful!");
 }
 
 function preparePurchase(btn, baseName) {
     const card = btn.closest('.item-card');
     const price = card.querySelector('.price').innerText;
     const select = card.querySelector('.variant-select');
-    const finalName = select ? `${baseName} (${select.options[select.selectedIndex].text.split(' - ')[0]})` : baseName;
+    
+    // This correctly formats the name for the modal and the webhook
+    let finalName = baseName;
+    if (select) {
+        const selectedLabel = select.options[select.selectedIndex].text.split(' - ')[0];
+        finalName = `${baseName} (${selectedLabel})`;
+    }
+
     openModal(finalName, price);
 }
 
