@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pixyarrowstore.vercel.app/sitemap.xml
+Sitemap: https://pixyarrowstore.com/sitemap.xml
