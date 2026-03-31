@@ -1,4 +1,4 @@
-/* --- ARROW & PIXY: MASTER HUB & STORE STYLESHEET v3.0 --- */
+/* --- ARROW & PIXY: MASTER HUB & STORE STYLESHEET v3.3 --- */
 
 :root {
     --gold: #ffcc00;
@@ -18,6 +18,7 @@ body {
     background: radial-gradient(circle at 50% 0%, #1a0505 0%, #050505 100%);
     color: #ffffff;
     margin: 0;
+    padding-bottom: 80px; /* Added padding so content doesn't hit the very bottom */
     overflow-x: hidden;
     min-height: 100vh;
 }
@@ -44,6 +45,7 @@ body {
     border-radius: 15px;
     z-index: 99;
     border-right: 3px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .support-content { font-size: 0.75rem; color: #888; text-align: right; }
@@ -153,6 +155,7 @@ header p {
     max-width: 1200px;
     margin: 0 auto 100px;
     padding: 0 20px;
+    min-height: 400px;
 }
 
 .hub-card {
@@ -243,7 +246,7 @@ button {
     cursor: pointer;
 }
 
-/* --- MODAL ENGINE --- */
+/* --- MODAL ENGINE (RE-ENGINEERED TO PREVENT OVERLAPPING) --- */
 #checkout-modal {
     display: none;
     position: fixed;
@@ -258,16 +261,29 @@ button {
 .modal-content {
     background: #0a0a0a;
     border: 1px solid #222;
-    padding: 50px;
+    padding: 40px;
     border-radius: 35px;
     width: 95%;
-    max-width: 480px;
+    max-width: 440px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-secondary {
+    background: transparent !important;
+    border: 2px solid var(--gold) !important;
+    color: var(--gold) !important;
+    margin-top: 5px;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 204, 0, 0.1) !important;
 }
 
 .input-stack {
     text-align: left;
-    margin-bottom: 25px;
 }
 
 .input-stack label {
@@ -286,7 +302,7 @@ input, select {
     border: 1px solid #222;
     border-radius: 12px;
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-family: inherit;
 }
 
@@ -300,270 +316,29 @@ input:focus { border-color: var(--gold); outline: none; }
     color: var(--gold);
     border: 1px dashed #444;
     word-break: break-all;
-    margin-bottom: 20px;
 }
 
 /* --- UTILITIES --- */
 .hidden { display: none !important; }
 
-@media (max-width: 768px) {
+/* --- MOBILE SPECIFIC FIXES --- */
+@media (max-width: 800px) {
     header h1 { font-size: 2rem; }
     .sidebar, .header-contact-top { display: none; }
-}
 
-/* Debugging: Highlight the store if it's active */
-#main-store:not(.hidden) {
-    border: 2px solid lime !important;
-    min-height: 100vh;
-}
+    /* MOVE SUPPORT BADGE TO TOP ON MOBILE TO UNBLOCK BOTTOM BUTTONS */
+    .footer-support {
+        bottom: auto;
+        top: 20px;
+        right: 10px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        border-right: none;
+        border-bottom: 2px solid var(--gold);
+    }
+    
+    .support-content { font-size: 0.65rem; }
 
-/* This ensures that when the store is active, it's visible */
-#main-store:not(.hidden) {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    min-height: 100vh;
-}
-
-/* Temporary fix for layout */
-.hub-container {
-    min-height: 400px;
-}
-
-/* 1. Ensure the hidden class actually works */
-.hidden {
-    display: none !important;
-}
-
-#main-store {
-    position: relative;
-    z-index: 99;
-    background: #050505; /* Matches your body background */
-    min-height: 100vh;
-}
-
-#hub-view {
-    position: relative;
-    z-index: 10;
-}
-#main-store {
-    background: #050505 !important; /* Forces the background color */
-    min-height: 100vh !important;   /* Forces it to fill the screen height */
-    position: relative !important;
-    z-index: 999 !important;        /* Brings it to the very front */
-    display: none;                  /* Hidden by default until JS triggers it */
-}
-
-#store-content {
-    padding: 40px 20px;
-    display: block !important;
-    opacity: 1 !important;
-}
-
-.support-request-wrapper {
-    /* Matches your hub-container max-width for perfect alignment */
-    max-width: 1200px; 
-    margin: 20px auto; /* Same gap as between the grid rows */
-    padding: 0 10px; /* Slight padding for screen edges */
-}
-
-.support-request-box {
-    background: #111; /* Dark background matching card bottoms */
-    border: 1px solid rgba(255, 215, 0, 0.2); /* Subtle gold border */
-    border-radius: 20px; /* Matches card corner radius */
-    overflow: hidden; /* Keeps image corners rounded */
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.support-request-box:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-}
-
-.request-image-container {
-    width: 100%;
-    height: 300px; /* Adjust height to fit your wide image */
-}
-
-.request-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures image fills the area beautifully */
-}
-
-.request-info {
-    padding: 20px;
-    background: #111; /* Dark bottom matching card bottoms */
-}
-
-.request-text h3 {
-    color: #fff;
-    margin: 0 0 5px 0;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.request-text p {
-    color: #aaa;
-    margin: 0 0 15px 0;
-    font-size: 0.9rem;
-}
-
-/* Specific styling for the Contact Support button to match 'Enter Store' */
-.support-btn {
-    width: 100% !important;
-    text-align: center;
-    background: var(--gold);
-    color: #000;
-    font-weight: 700;
-    padding: 12px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-    display: inline-block;
-}
-
-.support-btn:hover {
-    background: #fff;
-    color: #000;
-}
-.support-request-wrapper {
-    /* Matches your hub-container max-width for perfect alignment */
-    max-width: 1200px; 
-    margin: 20px auto; /* Same gap as between the grid rows */
-    padding: 0 10px; /* Slight padding for screen edges */
-}
-
-.support-request-box {
-    background: #111; /* Dark background matching card bottoms */
-    border: 1px solid rgba(255, 215, 0, 0.2); /* Subtle gold border */
-    border-radius: 20px; /* Matches card corner radius */
-    overflow: hidden; /* Keeps image corners rounded */
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.support-request-box:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-}
-
-.request-image-container {
-    width: 100%;
-    height: 300px; /* Adjust height to fit your wide image */
-}
-
-.request-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures image fills the area beautifully */
-}
-
-.request-info {
-    padding: 20px;
-    background: #111; /* Dark bottom matching card bottoms */
-}
-
-.request-text h3 {
-    color: #fff;
-    margin: 0 0 5px 0;
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.request-text p {
-    color: #aaa;
-    margin: 0 0 15px 0;
-    font-size: 0.9rem;
-}
-
-/* Specific styling for the Contact Support button to match 'Enter Store' */
-.support-btn {
-    width: 100% !important;
-    text-align: center;
-    background: var(--gold);
-    color: #000;
-    font-weight: 700;
-    padding: 12px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-    display: inline-block;
-}
-
-.support-btn:hover {
-    background: #fff;
-    color: #000;
-}
-.custom-request-banner {
-    max-width: 1200px; /* Match your hub-container width */
-    margin: 40px auto; /* Space below the grid */
-    background: #111;
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    border-radius: 20px;
-    display: flex; /* Side-by-side layout */
-    overflow: hidden;
-    align-items: center;
-    transition: 0.3s;
-}
-
-.custom-request-banner:hover {
-    border-color: var(--gold);
-    transform: translateY(-5px);
-}
-
-.banner-image {
-    width: 35%; /* Left side image */
-    height: 200px;
-}
-
-.banner-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.banner-content {
-    width: 65%; /* Right side info */
-    padding: 30px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.banner-text h3 {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.banner-text p {
-    color: #888;
-    font-size: 0.95rem;
-    max-width: 400px;
-}
-
-.contact-btn {
-    width: auto !important;
-    padding: 12px 30px !important;
-    white-space: nowrap;
-    text-decoration: none;
-    text-align: center;
-}
-
-/* Mobile: Stack vertically */
-@media (max-width: 800px) {
     .custom-request-banner {
         flex-direction: column;
         margin: 20px;
@@ -581,14 +356,144 @@ input:focus { border-color: var(--gold); outline: none; }
     }
 }
 
-/* --- STORE BANNER SPACING --- */
-.store-banner {
-    margin-top: 60px !important; /* Space between the items and the banner */
-    margin-bottom: 60px !important;
-}
-
+/* --- STORE VISIBILITY & Z-INDEX --- */
 #main-store {
-    display: flex;
+    background: #050505 !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    z-index: 999 !important;
+    display: none;
     flex-direction: column;
     align-items: center;
+}
+
+#main-store:not(.hidden) {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#hub-view {
+    position: relative;
+    z-index: 10;
+}
+
+#store-content {
+    padding: 40px 20px;
+    width: 100%;
+}
+
+/* --- SUPPORT REQUEST BOXES --- */
+.support-request-wrapper {
+    max-width: 1200px; 
+    margin: 20px auto; 
+    padding: 0 10px; 
+}
+
+.support-request-box {
+    background: #111; 
+    border: 1px solid rgba(255, 215, 0, 0.2); 
+    border-radius: 20px; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+
+.support-request-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.request-image-container {
+    width: 100%;
+    height: 300px; 
+}
+
+.request-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.request-info {
+    padding: 20px;
+    background: #111; 
+}
+
+.request-text h3 {
+    color: #fff;
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.request-text p {
+    color: #aaa;
+    margin: 0 0 15px 0;
+    font-size: 0.9rem;
+}
+
+.support-btn {
+    width: 100% !important;
+    text-align: center;
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.support-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* --- CUSTOM REQUEST BANNER --- */
+.custom-request-banner {
+    max-width: 1200px; 
+    margin: 40px auto; 
+    background: #111;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 20px;
+    display: flex; 
+    overflow: hidden;
+    align-items: center;
+}
+
+.banner-image {
+    width: 35%; 
+    height: 200px;
+}
+
+.banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-content {
+    width: 65%; 
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-btn {
+    width: auto !important;
+    padding: 12px 30px !important;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+}
+
+.store-banner {
+    margin-top: 60px !important; 
+    margin-bottom: 60px !important;
 }
